@@ -1,4 +1,6 @@
-@def title = "Blog"
++++
+title = "Blog"
++++
 
 \begin{section}{name="Blog", class=""}
 
