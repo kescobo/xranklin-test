@@ -5,6 +5,7 @@ using FranklinUtils
 # ----------------------------------- #
 
 @env function section(md; name="", class="wg-$name",rowclass="")
+    md = only(md)
     id = Franklin.refstring(name)
     return html("""
         <section id=\"$id\" class=\"home-section $class\">
@@ -16,7 +17,8 @@ using FranklinUtils
 end
 
 @lx function sectionheading(title; class="")
-    return html("""
+  title = only(title)  
+  return html("""
         <div class="$class section-heading"><h1>$title</h1></div>
         """)
 end
@@ -56,6 +58,7 @@ end
 
 # Biography block with optional resume link
 @env function biography(md; resume="")
+    md = only(md)
     io = IOBuffer()
     write(io, html("""<h1>Biography</h1>""") * md)
     isempty(resume) || write(io, html("""
@@ -93,9 +96,12 @@ end
 end
 
 # skill featurette
-@lx function skill(name, sub=""; img="", fa="",
+@lx function skill(args; img="", fa="",
                    imgstyle="display:inline-block; width:56px;",
                    fastyle="")
+    
+    name = first(args)
+    sub = length(args) == 2 ? args[2] : ""
     illustration = ""
     if !isempty(img)
         illustration = """<img style="$imgstyle" src="$img">"""

@@ -1,4 +1,6 @@
-@def title = "Academic template"
++++
+title = "Academic template"
++++
 
 <!-- -----------------
      BIOGRAPHY SECTION
